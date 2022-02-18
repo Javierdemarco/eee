@@ -74,12 +74,13 @@
 (require 'use-package)
 (eval-and-compile
   (setq use-package-always-ensure t))
+(use-package general)
 (use-package benchmark-init
   :config
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 (use-package kaolin-themes
   :config
-  (load-theme 'kaolin-aurora t)
+  (load-theme 'kaolin-ocean t)
   (kaolin-treemacs-theme))
 (use-package auto-package-update
   :config
@@ -130,12 +131,6 @@
   (dashboard-setup-startup-hook))
 (use-package helpful
   :bind
-  ("<help> f" . helpful-callable)
-  ("<help> v" . helpful-variable)
-  ("<help> k" . helpful-key)
-  ("C-c C-d" . helpful-at-point)
-  ("<help> F" . helpful-function)
-  ("<help> C" . helpful-command)
   :config
   (setq counsel-describe-function-function #'helpful-callable)
   (setq counsel-describe-variable-function #'helpful-variable))
@@ -188,28 +183,7 @@
          ("C-M-#" . consult-register)
          ;; Other custom bindings
          ("M-y" . consult-yank-pop)
-         ("<help> a" . consult-apropos)
-         ;; M-g bindings (goto-map)
-         ("M-g e" . consult-compile-error)
-         ("M-g f" . consult-flycheck)
-         ("M-g g" . consult-goto-line)
-         ("M-g M-g" . consult-goto-line)
-         ("M-g o" . consult-outline)
-         ("M-g m" . consult-mark)
-         ("M-g k" . consult-global-mark)
-         ("M-g i" . consult-imenu)
-         ("M-g I" . consult-imenu-multi)
-         ;; M-s bindings (search-map)
-         ("M-s d" . consult-find)
-         ("M-s D" . consult-locate)
-         ("M-s g" . consult-grep)
-         ("M-s G" . consult-git-grep)
-         ("M-s r" . consult-ripgrep)
-         ("M-s l" . consult-line)
-         ("M-s L" . consult-line-multi)
-         ("M-s m" . consult-multi-occur)
-         ("M-s k" . consult-keep-lines)
-         ("M-s u" . consult-focus-lines))
+         ("<help> a" . consult-apropos))
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI. You may want to also
   ;; enable `consult-preview-at-point-mode` in Embark Collect buffers.
@@ -219,8 +193,6 @@
         register-preview-function #'consult-register-format)
   (advice-add #'register-preview :override #'consult-register-window)
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
   :config
   ;; Optionally configure preview. The default value
   ;; is 'any, such that any key triggers the preview.
@@ -245,18 +217,7 @@
   (embark-collect-mode . consult-preview-at-point-mode))
 (use-package consult-dir
   :bind (("C-x C-d" . consult-dir)))
-(use-package symbol-overlay
-  :bind
-  ("M-s i" . symbol-overlay-put)
-  ("M-s n" . symbol-overlay-jump-next)
-  ("M-s p" . symbol-overlay-jump-prev)
-  ("M-s w" . symbol-overlay-save-symbol)
-  ("M-s t" . symbol-overlay-toggle-in-scope)
-  ("M-s e" . symbol-overlay-echo-mark)
-  ("M-s d" . symbol-overlay-jump-to-definition)
-  ("M-s s" . symbol-overlay-isearch-literally)
-  ("M-s q" . symbol-overlay-query-replace)
-  ("M-s r" . symbol-overlay-rename))
+(use-package symbol-overlay)
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 (use-package highlight-thing
@@ -281,12 +242,7 @@
   (cfrs-border-color ((t (:background ,(face-foreground 'font-lock-comment-face nil t)))))
   :bind (([f8]        . treemacs)
          ("M-0"       . treemacs-select-window)
-         ("C-x 1"     . treemacs-delete-other-windows)
-         ("C-x t 1"   . treemacs-delete-other-windows)
-         ("C-x t t"   . treemacs)
-         ("C-x t b"   . treemacs-bookmark)
-         ("C-x t C-t" . treemacs-find-file)
-         ("C-x t M-t" . treemacs-find-tag)
+         ("C-x 1"     . treemacs-delete-other-windows) 
          :map treemacs-mode-map
          ([mouse-1]   . treemacs-single-click-expand-action))
   :config
@@ -333,7 +289,12 @@
 (use-package evil-nerd-commenter
   :after evil
   :config
+  (setq evil-undo-system 'undo-fu)
   (evilnc-default-hotkeys))
+(use-package undo-fu
+  :config
+  (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+  (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo))
 (use-package smartparens
   :hook (prog-mode . smartparens-mode))
 (use-package which-key
@@ -353,7 +314,7 @@
 (use-package flycheck
   :hook (after-init . global-flycheck-mode))
 (use-package consult-flycheck
-  :after consult))
+  :after consult)
 (use-package git-gutter
   :hook (after-init . global-git-gutter-mode))
 ;;(use-package vterm)
@@ -367,7 +328,13 @@
   :hook (company-mode . company-box-mode))
 (use-package lsp-mode
   :config
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "C-c l"
+	gc-cons-threshold 100000000
+	read-process-output-max (* 1024 1024)
+	lsp-idle-delay 0.500
+	lsp-log-io nil
+	lsp-completion-provider :capf
+	lsp-prefer-flymake nil)
   :hook ((prog-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
@@ -434,8 +401,83 @@
 	awesome-tray-file-path-full-dirname-levels 0
 	awesome-tray-file-path-truncate-dirname-levels 3
 	awesome-tray-file-path-truncated-name-length 3)
-  (awesome-tray-mode t)
-  )
+  (awesome-tray-mode t))
+(general-define-key
+ :keymaps '(normal insert emacs)
+ :prefix "C-q"
+ :prefix-command 'eee-consult-search-prefix-command
+ :prefix-map 'eee-consult-search-prefix-map
+ "s" 'consult-line
+ "d" 'consult-find
+ "D" 'consult-locate
+ "g" 'consult-grep
+ "G" 'consult-git-grep
+ "r" 'consult-ripgrep
+ "l" 'consult-line
+ "L" 'consult-line-multi
+ "m" 'consult-multi-occur
+ "k" 'consult-keep-lines
+ "u" 'consult-focus-lines)
+(general-define-key
+ :keymaps '(normal insert emacs)
+ :prefix "M-s"
+ :prefix-command 'eee-symbol-overlay-prefix-command
+ :prefix-map 'eee-symbol-overlay-prefix-map
+ "i" 'symbol-overlay-put
+ "n" 'symbol-overlay-jump-next
+ "p" 'symbol-overlay-jump-prev
+ "w" 'symbol-overlay-save-symbol
+ "t" 'symbol-overlay-toggle-in-scope
+ "e" 'symbol-overlay-echo-mark
+ "d" 'symbol-overlay-jump-to-definition
+ "s" 'symbol-overlay-isearch-literally
+ "q" 'symbol-overlay-query-replace
+ "r" 'symbol-overlay-rename)
+(general-define-key
+ :keymaps '(normal insert emacs)
+ :prefix "C-x t"
+ :prefix-command 'eee-treemacs-prefix-command
+ :prefix-map 'eee-treemacs-prefix-map
+ "1"  'treemacs-delete-other-windows
+ "t"   'treemacs
+ "b"   'treemacs-bookmark
+ "C-t" 'treemacs-find-file
+ "M-t" 'treemacs-find-tag)
+(general-define-key
+ :keymaps '(normal insert emacs)
+ :prefix "M-g"
+ :prefix-command 'eee-consult-goto-prefix-command
+ :prefix-map 'eee-consult-goto-prefix-map
+ "e" 'consult-compile-error
+ "f" 'consult-flycheck
+ "g" 'consult-goto-line
+ "M-g" 'consult-goto-line
+ "o" 'consult-outline
+ "m" 'consult-mark
+ "k" 'consult-global-mark
+ "i" 'consult-imenu
+ "I" 'consult-imenu-multi)
+(general-define-key
+ :keymaps '(normal insert emacs)
+ :prefix "<help>"
+ :prefix-command 'eee-help-prefix-command
+ :prefix-map 'eee-help-prefix-map
+ " f" 'helpful-callable
+ " v"  'helpful-variable
+ "k" 'helpful-key
+ "C-d" 'helpful-at-point
+ "F" 'helpful-function
+ "C" 'helpful-command)
+(use-package scala-mode
+  :interpreter
+  ("scala" . scala-mode))
+(use-package lsp-metals
+  :custom
+  ;; Metals claims to support range formatting by default but it supports range
+  ;; formatting of multiline strings only. You might want to disable it so that
+  ;; emacs can use indentation provided by scala-mode.
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
+  :hook (scala-mode . lsp))
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables
@@ -450,4 +492,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(cfrs-border-color ((t (:background "#454459")))))
+ '(cfrs-border-color ((t (:background "#545c5e")))))

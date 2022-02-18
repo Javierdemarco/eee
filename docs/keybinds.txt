@@ -1,0 +1,1074 @@
+("M-p" . projectile-command-map)
+("<help> f" . helpful-callable)
+("<help> v" . helpful-variable)
+("<help> k" . helpful-key)
+("C-c C-d" . helpful-at-point)
+("<help> F" . helpful-function)
+("<help> C" . helpful-command)
+("C-c z c" . wg-create-workgroup)
+("C-c z o" . wg-open-workgroup)
+("C-c z k" . wg-kill-workgroup)
+("C-." . embark-act) 
+("M-." . embark-dwim)        
+("C-h B" . embark-bindings)
+("C-c h" . consult-history)
+("C-c m" . consult-mode-command)
+("C-c k" . consult-kmacro)
+("C-x b" . consult-buffer)
+("C-x 4 b" . consult-buffer-other-window)
+("C-x r b" . consult-bookmark)
+("M-#" . consult-register-load)
+("M-'" . consult-register-store)
+("C-M-#" . consult-register)
+("M-y" . consult-yank-pop)
+("<help> a" . consult-apropos)
+("M-g e" . consult-compile-error)
+("M-g f" . consult-flycheck)
+("M-g g" . consult-goto-line)
+("M-g M-g" . consult-goto-line)
+("M-g o" . consult-outline)
+("M-g m" . consult-mark)
+("M-g k" . consult-global-mark)
+("M-g i" . consult-imenu)
+("M-g I" . consult-imenu-multi)
+("M-s d" . consult-find)
+("M-s D" . consult-locate)
+("M-s g" . consult-grep)
+("M-s G" . consult-git-grep)
+("M-s r" . consult-ripgrep)
+("M-s l" . consult-line)
+("M-s L" . consult-line-multi)
+("M-s m" . consult-multi-occur)
+("M-s k" . consult-keep-lines)
+("M-s u" . consult-focus-lines)
+("C-x C-d" . consult-dir)
+("M-s i" . symbol-overlay-put)
+("M-s n" . symbol-overlay-jump-next)
+("M-s p" . symbol-overlay-jump-prev)
+("M-s w" . symbol-overlay-save-symbol)
+("M-s t" . symbol-overlay-toggle-in-scope)
+("M-s e" . symbol-overlay-echo-mark)
+("M-s d" . symbol-overlay-jump-to-definition)
+("M-s s" . symbol-overlay-isearch-literally)
+("M-s q" . symbol-overlay-query-replace)
+("M-s r" . symbol-overlay-rename)
+([f8]        . treemacs)
+("M-0"       . treemacs-select-window)
+("C-x 1"     . treemacs-delete-other-windows)
+("C-x t 1"   . treemacs-delete-other-windows)
+("C-x t t"   . treemacs)
+("C-x t b"   . treemacs-bookmark)
+("C-x t C-t" . treemacs-find-file)
+("C-x t M-t" . treemacs-find-tag)
+("C->" . mc/mark-next-like-this)
+("C-<" . mc/mark-previous-like-this)
+("C-c C-<" . mc/mark-all-like-this)
+
+Key translations:
+key             binding
+---             -------
+
+C-x		Prefix Command
+C-x 8 $		¤
+C-x 8 +		±
+C-x 8 .		·
+C-x 8 <		«
+C-x 8 =		¯
+C-x 8 >		»
+C-x 8 C		©
+C-x 8 R		®
+C-x 8 o		°
+C-x 8 x		×
+
+
+`evil-collection-unimpaired-mode' Minor Mode Bindings:
+key             binding
+---             -------
+
+[		Prefix Command
+]		Prefix Command
+
+] SPC		evil-collection-unimpaired-insert-newline-below
+] L		evil-collection-unimpaired-last-error
+] b		evil-next-buffer
+] e		evil-collection-unimpaired-move-text-down
+] l		evil-collection-unimpaired-next-error
+] p		evil-collection-unimpaired-paste-below
+
+[ SPC		evil-collection-unimpaired-insert-newline-above
+[ L		evil-collection-unimpaired-first-error
+[ b		evil-prev-buffer
+[ e		evil-collection-unimpaired-move-text-up
+[ l		evil-collection-unimpaired-previous-error
+[ p		evil-collection-unimpaired-paste-above
+
+
+`t' Minor Mode Bindings:
+key             binding
+---             -------
+
+g		Prefix Command
+
+g r		xref-find-references
+g z		evil-collection-elisp-mode-ielm-repl
+
+
+`evil-normal-state-minor-mode' Minor Mode Bindings:
+key             binding
+---             -------
+
+C-n		evil-paste-pop-next
+C-p		evil-paste-pop
+C-r		evil-redo
+C-t		pop-tag-mark
+"		evil-use-register
+&		evil-ex-repeat-substitute
+,		Prefix Command
+.		evil-repeat
+<		evil-shift-left
+=		evil-indent
+>		evil-shift-right
+@		evil-execute-macro
+A		evil-append-line
+C		evil-change-line
+D		evil-delete-line
+I		evil-insert-line
+J		evil-join
+O		evil-open-above
+P		evil-paste-before
+R		evil-replace-state
+S		evil-change-whole-line
+X		evil-delete-backward-char
+Y		evil-yank-line
+Z		Prefix Command
+a		evil-append
+c		evil-change
+d		evil-delete
+g		Prefix Command
+i		evil-insert
+m		evil-set-marker
+o		evil-open-below
+p		evil-paste-after
+q		evil-record-macro
+r		evil-replace
+s		evil-substitute
+u		evil-undo
+x		evil-delete-char
+y		evil-yank
+z		Prefix Command
+DEL		evil-backward-char
+<deletechar>	evil-delete-char
+<escape>	evil-force-normal-state
+<insert>	evil-insert
+<insertchar>	evil-insert
+<mouse-2>	mouse-yank-primary
+
+, ,		evilnc-comment-operator
+, .		evilnc-copy-and-comment-operator
+, c		Prefix Command
+, l		Prefix Command
+
+Z Q		evil-quit
+Z Z		evil-save-modified-and-close
+
+z =		ispell-word
+z O		evil-open-fold-rec
+z a		evil-toggle-fold
+z c		evil-close-fold
+z m		evil-close-folds
+z o		evil-open-fold
+z r		evil-open-folds
+
+[ F		evil-find-file-at-point-with-line
+[ f		find-file-at-point
+
+] F		evil-find-file-at-point-with-line
+] f		find-file-at-point
+
+g ,		goto-last-change-reverse
+g ;		goto-last-change
+g F		evil-find-file-at-point-with-line
+g T		tab-bar-switch-to-prev-tab
+g f		find-file-at-point
+g t		tab-bar-switch-to-next-tab
+g x		browse-url-at-point
+
+, l l		evilnc-quick-comment-or-uncomment-to-the-line
+
+, c c		evilnc-copy-and-comment-lines
+, c i		evilnc-comment-or-uncomment-lines
+, c l		evilnc-quick-comment-or-uncomment-to-the-line
+, c p		evilnc-comment-or-uncomment-paragraphs
+, c r		comment-or-uncomment-region
+, c v		evilnc-toggle-invert-comment-line-by-line
+
+
+`evil-motion-state-minor-mode' Minor Mode Bindings:
+key             binding
+---             -------
+
+C-b		evil-scroll-page-up
+C-d		evil-scroll-down
+C-e		evil-scroll-line-down
+C-f		evil-scroll-page-down
+TAB		evil-jump-forward
+RET		evil-ret
+C-o		evil-jump-backward
+C-v		evil-visual-block
+C-w		evil-window-map
+C-y		evil-scroll-line-up
+C-z		evil-emacs-state
+C-]		evil-jump-to-tag
+C-^		evil-buffer
+SPC		evil-forward-char
+$		evil-end-of-line
+%		evil-jump-item
+'		evil-goto-mark-line
+(		evil-backward-sentence-begin
+)		evil-forward-sentence-begin
+*		evil-search-word-forward
++		evil-next-line-first-non-blank
+-		evil-previous-line-first-non-blank
+/		evil-search-forward
+0		evil-beginning-of-line
+1 .. 9		digit-argument
+:		evil-ex
+;		evil-repeat-find-char
+?		evil-search-backward
+B		evil-backward-WORD-begin
+E		evil-forward-WORD-end
+F		evil-find-char-backward
+G		evil-goto-line
+H		evil-window-top
+K		evil-lookup
+L		evil-window-bottom
+M		evil-window-middle
+N		evil-search-previous
+T		evil-find-char-to-backward
+V		evil-visual-line
+W		evil-forward-WORD-begin
+[		Prefix Command
+\		evil-execute-in-emacs-state
+]		Prefix Command
+^		evil-first-non-blank
+_		evil-next-line-1-first-non-blank
+`		evil-goto-mark
+b		evil-backward-word-begin
+e		evil-forward-word-end
+f		evil-find-char
+g		Prefix Command
+h		evil-backward-char
+j		evil-next-line
+k		evil-previous-line
+l		evil-forward-char
+n		evil-search-next
+t		evil-find-char-to
+v		evil-visual-char
+w		evil-forward-word-begin
+z		Prefix Command
+{		evil-backward-paragraph
+|		evil-goto-column
+}		evil-forward-paragraph
+C-6		evil-switch-to-windows-last-buffer
+
+z +		evil-scroll-bottom-line-to-top
+z H		evil-scroll-left
+z L		evil-scroll-right
+z ^		evil-scroll-top-line-to-bottom
+z b		evil-scroll-line-to-bottom
+z h		evil-scroll-column-left
+z l		evil-scroll-column-right
+z t		evil-scroll-line-to-top
+z z		evil-scroll-line-to-center
+
+C-w C-b		evil-window-bottom-right
+C-w C-c		evil-window-delete
+C-w C-f		ffap-other-window
+C-w C-n		evil-window-new
+C-w C-o		delete-other-windows
+C-w C-p		evil-window-mru
+C-w C-r		evil-window-rotate-downwards
+C-w C-s		evil-window-split
+C-w C-t		evil-window-top-left
+C-w C-v		evil-window-vsplit
+C-w C-w		evil-window-next
+C-w C-_		evil-window-set-height
+C-w +		evil-window-increase-height
+C-w -		evil-window-decrease-height
+C-w <		evil-window-decrease-width
+C-w =		balance-windows
+C-w >		evil-window-increase-width
+C-w H		evil-window-move-far-left
+C-w J		evil-window-move-very-bottom
+C-w K		evil-window-move-very-top
+C-w L		evil-window-move-far-right
+C-w R		evil-window-rotate-upwards
+C-w S		evil-window-split
+C-w W		evil-window-prev
+C-w _		evil-window-set-height
+C-w b		evil-window-bottom-right
+C-w c		evil-window-delete
+C-w h		evil-window-left
+C-w j		evil-window-down
+C-w k		evil-window-up
+C-w l		evil-window-right
+C-w n		evil-window-new
+C-w o		delete-other-windows
+C-w p		evil-window-mru
+C-w q		evil-quit
+C-w r		evil-window-rotate-downwards
+C-w s		evil-window-split
+C-w t		evil-window-top-left
+C-w v		evil-window-vsplit
+C-w w		evil-window-next
+C-w |		evil-window-set-width
+C-w C-S-h	evil-window-move-far-left
+C-w C-S-j	evil-window-move-very-bottom
+C-w C-S-k	evil-window-move-very-top
+C-w C-S-l	evil-window-move-far-right
+C-w C-S-r	evil-window-rotate-upwards
+C-w C-S-s	evil-window-split
+C-w C-S-w	evil-window-prev
+
+[ '		evil-previous-mark-line
+[ (		evil-previous-open-paren
+[ [		evil-backward-section-begin
+[ ]		evil-backward-section-end
+[ `		evil-previous-mark
+[ s		evil-prev-flyspell-error
+[ {		evil-previous-open-brace
+
+] '		evil-next-mark-line
+] )		evil-next-close-paren
+] [		evil-forward-section-end
+] ]		evil-forward-section-begin
+] `		evil-next-mark
+] s		evil-next-flyspell-error
+] }		evil-next-close-brace
+
+g C-]		evil-jump-to-tag
+g #		evil-search-unbounded-word-backward
+g $		evil-end-of-visual-line
+g *		evil-search-unbounded-word-forward
+g 0		evil-beginning-of-visual-line
+g E		evil-backward-WORD-end
+g M		evil-percentage-of-line
+g N		evil-previous-match
+g ^		evil-first-non-blank-of-visual-line
+g _		evil-last-non-blank
+g d		evil-goto-definition
+g e		evil-backward-word-end
+g g		evil-goto-first-line
+g j		evil-next-visual-line
+g k		evil-previous-visual-line
+g m		evil-middle-of-visual-line
+g n		evil-next-match
+g o		evil-goto-char
+g v		evil-visual-restore
+g <down>	evil-next-visual-line
+g <end>		evil-end-of-visual-line
+g <home>	evil-first-non-blank-of-visual-line
+g <up>		evil-previous-visual-line
+
+
+`hi-lock-mode' Minor Mode Bindings:
+key             binding
+---             -------
+
+C-x w .		highlight-symbol-at-point
+C-x w b		hi-lock-write-interactive-patterns
+C-x w h		highlight-regexp
+C-x w i		hi-lock-find-patterns
+C-x w l		highlight-lines-matching-regexp
+C-x w p		highlight-phrase
+C-x w r		unhighlight-regexp
+
+
+`yas-minor-mode' Minor Mode Bindings:
+key             binding
+---             -------
+
+C-c & C-n	yas-new-snippet
+C-c & C-s	yas-insert-snippet
+C-c & C-v	yas-visit-snippet-file
+
+
+`flycheck-mode' Minor Mode Bindings:
+key             binding
+---             -------
+
+C-c		Prefix Command
+
+C-c !		Prefix Command
+
+C-c ! C-c	flycheck-compile
+C-c ! C-w	flycheck-copy-errors-as-kill
+C-c ! ?		flycheck-describe-checker
+C-c ! C		flycheck-clear
+C-c ! H		display-local-help
+C-c ! V		flycheck-version
+C-c ! c		flycheck-buffer
+C-c ! e		flycheck-explain-error-at-point
+C-c ! h		flycheck-display-error-at-point
+C-c ! i		flycheck-manual
+C-c ! l		flycheck-list-errors
+C-c ! n		flycheck-next-error
+C-c ! p		flycheck-previous-error
+C-c ! s		flycheck-select-checker
+C-c ! v		flycheck-verify-setup
+C-c ! x		flycheck-disable-checker
+
+
+`evil-collection-unimpaired-mode' Minor Mode Bindings:
+key             binding
+---             -------
+
+<motion-state>	Prefix Command
+<normal-state>	Prefix Command
+<visual-state>	Prefix Command
+
+<motion-state> [		Prefix Command
+<motion-state> ]		Prefix Command
+
+<visual-state> [		Prefix Command
+<visual-state> ]		Prefix Command
+
+<normal-state> [		Prefix Command
+<normal-state> ]		Prefix Command
+
+<motion-state> ] 6		evil-collection-unimpaired-b64-decode
+<motion-state> ] u		evil-collection-unimpaired-url-decode
+
+<motion-state> [ 6		evil-collection-unimpaired-b64-encode
+<motion-state> [ u		evil-collection-unimpaired-url-encode
+
+<visual-state> ] e		evil-collection-unimpaired-move-text-down
+<visual-state> ] n		evil-collection-unimpaired-next-SCM-conflict-marker
+
+<visual-state> [ e		evil-collection-unimpaired-move-text-up
+<visual-state> [ n		evil-collection-unimpaired-previous-SCM-conflict-marker
+
+<normal-state> ] SPC		evil-collection-unimpaired-insert-newline-below
+<normal-state> ] L		evil-collection-unimpaired-last-error
+<normal-state> ] P		evil-collection-unimpaired-paste-below
+<normal-state> ] Q		evil-collection-unimpaired-last-error
+<normal-state> ] b		evil-next-buffer
+<normal-state> ] e		evil-collection-unimpaired-move-text-down
+<normal-state> ] l		evil-collection-unimpaired-next-error
+<normal-state> ] n		evil-collection-unimpaired-next-SCM-conflict-marker
+<normal-state> ] p		evil-collection-unimpaired-paste-below
+<normal-state> ] q		evil-collection-unimpaired-next-error
+
+<normal-state> [ SPC		evil-collection-unimpaired-insert-newline-above
+<normal-state> [ L		evil-collection-unimpaired-first-error
+<normal-state> [ P		evil-collection-unimpaired-paste-above
+<normal-state> [ Q		evil-collection-unimpaired-first-error
+<normal-state> [ b		evil-prev-buffer
+<normal-state> [ e		evil-collection-unimpaired-move-text-up
+<normal-state> [ l		evil-collection-unimpaired-previous-error
+<normal-state> [ n		evil-collection-unimpaired-previous-SCM-conflict-marker
+<normal-state> [ p		evil-collection-unimpaired-paste-above
+<normal-state> [ q		evil-collection-unimpaired-previous-error
+
+C-M-i		completion-at-point
+C-M-q		indent-pp-sexp
+C-M-x		eval-defun
+
+<normal-state> g r		xref-find-references
+<normal-state> g z		evil-collection-elisp-mode-ielm-repl
+
+
+Global Bindings:
+key             binding
+---             -------
+
+C-@		set-mark-command
+C-a		move-beginning-of-line
+C-c		mode-specific-command-prefix
+C-g		keyboard-quit
+C-h		help-command
+C-j		electric-newline-and-maybe-indent
+C-k		kill-line
+C-l		recenter-top-bottom
+C-q		quoted-insert
+C-s		isearch-forward
+C-u		universal-argument
+C-x		Control-X-prefix
+ESC		ESC-prefix
+C-\		toggle-input-method
+C-_		undo
+C-SPC		set-mark-command
+C--		negative-argument
+C-/		undo
+C-0 .. C-5	digit-argument
+C-7 .. C-9	digit-argument
+C-<		mc/mark-previous-like-this
+C->		mc/mark-next-like-this
+<C-M-down>	down-list
+<C-M-down-mouse-1>		mouse-drag-region-rectangle
+<C-M-drag-mouse-1>		ignore
+<C-M-end>	end-of-defun
+<C-M-home>	beginning-of-defun
+<C-M-left>	backward-sexp
+<C-M-mouse-1>	mouse-set-point
+<C-M-right>	forward-sexp
+<C-M-up>	backward-up-list
+<C-S-backspace>			kill-whole-line
+<C-backspace>			backward-kill-word
+<C-delete>	kill-word
+<C-down>	forward-paragraph
+<C-down-mouse-1>		mouse-buffer-menu
+<C-down-mouse-2>		facemenu-menu
+<C-drag-n-drop>			w32-drag-n-drop-other-frame
+<C-end>		end-of-buffer
+<C-f10>		buffer-menu-open
+<C-home>	beginning-of-buffer
+<C-insert>	kill-ring-save
+<C-insertchar>	kill-ring-save
+<C-left>	left-word
+<C-next>	scroll-left
+<C-noname>	ignore
+<C-prior>	scroll-right
+<C-right>	right-word
+<C-up>		backward-paragraph
+<C-wheel-down>	mouse-wheel-text-scale
+<C-wheel-up>	mouse-wheel-text-scale
+<M-begin>	beginning-of-buffer-other-window
+<M-down-mouse-1>		mouse-drag-secondary
+<M-drag-mouse-1>		mouse-set-secondary
+<M-end>		end-of-buffer-other-window
+<M-f10>		toggle-frame-maximized
+<M-home>	beginning-of-buffer-other-window
+<M-left>	left-word
+<M-mouse-1>	mouse-start-secondary
+<M-mouse-2>	mouse-yank-secondary
+<M-mouse-3>	mouse-secondary-save-then-kill
+<M-next>	scroll-other-window
+<M-noname>	ignore
+<M-prior>	scroll-other-window-down
+<M-right>	right-word
+<M-wheel-down>	mwheel-scroll
+<M-wheel-left>	mwheel-scroll
+<M-wheel-right>			mwheel-scroll
+<M-wheel-up>			mwheel-scroll
+<Scroll_Lock>			scroll-lock-mode
+<S-delete>	kill-region
+<S-down-mouse-1>		mouse-appearance-menu
+<S-insert>	yank
+<S-insertchar>	yank
+<S-mouse-3>	kmacro-end-call-mouse
+<S-wheel-down>	mwheel-scroll
+<S-wheel-left>	mwheel-scroll
+<S-wheel-right>			mwheel-scroll
+<S-wheel-up>			mwheel-scroll
+<XF86Back>	previous-buffer
+<XF86Forward>	next-buffer
+<again>		repeat-complex-command
+<begin>		beginning-of-buffer
+<bottom-divider>		Prefix Command
+<bottom-edge>			Prefix Command
+<bottom-left-corner>		Prefix Command
+<bottom-right-corner>		Prefix Command
+<compose-last-chars>		compose-last-chars
+<copy>		clipboard-kill-ring-save
+<cut>		clipboard-kill-region
+<deleteline>	kill-line
+<delete-frame>	handle-delete-frame
+<drag-mouse-1>	mouse-set-region
+<drag-n-drop>	w32-drag-n-drop
+<execute>	execute-extended-command
+<f1>		help-command
+<f2>		2C-command
+<f3>		kmacro-start-macro-or-insert-counter
+<f4>		kmacro-end-or-call-macro
+<f8>		treemacs
+<f10>		menu-bar-open
+<f11>		toggle-frame-fullscreen
+<f16>		clipboard-kill-ring-save
+<f18>		clipboard-yank
+<f20>		clipboard-kill-region
+<find>		search-forward
+<horizontal-scroll-bar>		Prefix Command
+<iconify-frame>			ignore-event
+<insertline>			open-line
+<language-change>		ignore
+<left-edge>			Prefix Command
+<lwindow>	ignore
+<make-frame-visible>		ignore-event
+<next>		scroll-up-command
+<noname>	ignore
+<open>		find-file
+<paste>		clipboard-yank
+<prior>		scroll-down-command
+<redo>		repeat-complex-command
+<undo>		undo
+
+
+C-c C-d		helpful-at-point
+C-c c		evilnc-copy-and-comment-lines
+C-c h		consult-history
+C-c k		consult-kmacro
+C-c l		evilnc-quick-comment-or-uncomment-to-the-line
+C-c m		consult-mode-command
+C-c p		evilnc-comment-or-uncomment-paragraphs
+C-c z		Prefix Command
+C-c C-<		mc/mark-all-like-this
+
+C-x C-@		pop-global-mark
+C-x C-b		list-buffers
+C-x C-c		save-buffers-kill-terminal
+C-x C-d		consult-dir
+C-x C-e		eval-last-sexp
+C-x C-f		find-file
+C-x TAB		indent-rigidly
+C-x C-k		kmacro-keymap
+C-x C-l		downcase-region
+C-x RET		Prefix Command
+C-x C-n		set-goal-column
+C-x C-o		delete-blank-lines
+C-x C-p		mark-page
+C-x C-q		read-only-mode
+C-x C-r		find-file-read-only
+C-x C-s		save-buffer
+C-x C-t		transpose-lines
+C-x C-u		upcase-region
+C-x C-v		find-alternate-file
+C-x C-w		write-file
+C-x C-x		exchange-point-and-mark
+C-x C-z		suspend-frame
+C-x #		server-edit
+C-x $		set-selective-display
+C-x '		expand-abbrev
+C-x (		kmacro-start-macro
+C-x )		kmacro-end-macro
+C-x *		calc-dispatch
+C-x +		balance-windows
+C-x -		shrink-window-if-larger-than-buffer
+C-x .		set-fill-prefix
+C-x 0		delete-window
+C-x 1		treemacs-delete-other-windows
+C-x 4		ctl-x-4-prefix
+C-x 5		ctl-x-5-prefix
+C-x 8		Prefix Command
+C-x ;		comment-set-column
+C-x <		scroll-left
+C-x =		what-cursor-position
+C-x >		scroll-right
+C-x X		Prefix Command
+C-x [		backward-page
+C-x ]		forward-page
+C-x ^		enlarge-window
+C-x `		next-error
+C-x a		Prefix Command
+C-x b		consult-buffer
+C-x d		dired
+C-x e		kmacro-end-and-call-macro
+C-x f		set-fill-column
+C-x g		magit-status
+C-x h		mark-whole-buffer
+C-x i		insert-file
+C-x k		kill-buffer
+C-x l		count-lines-page
+C-x m		compose-mail
+C-x n		Prefix Command
+C-x o		other-window
+C-x p		Prefix Command
+C-x q		kbd-macro-query
+C-x r		Prefix Command
+C-x s		save-some-buffers
+C-x t		Prefix Command
+C-x u		undo
+C-x v		vc-prefix-map
+C-x z		repeat
+C-x {		shrink-window-horizontally
+C-x }		enlarge-window-horizontally
+C-x DEL		backward-kill-sentence
+C-x C-SPC	pop-global-mark
+C-x C-+		text-scale-adjust
+C-x C--		text-scale-adjust
+C-x C-0		text-scale-adjust
+C-x C-;		comment-line
+C-x C-=		text-scale-adjust
+C-x <C-left>	previous-buffer
+C-x <C-right>	next-buffer
+C-x <left>	previous-buffer
+C-x <right>	next-buffer
+
+C-M-@		mark-sexp
+C-M-a		beginning-of-defun
+C-M-b		backward-sexp
+C-M-c		exit-recursive-edit
+C-M-d		down-list
+C-M-e		end-of-defun
+C-M-f		forward-sexp
+C-M-h		mark-defun
+C-M-j		default-indent-new-line
+C-M-k		kill-sexp
+C-M-l		reposition-window
+C-M-n		forward-list
+C-M-o		split-line
+C-M-p		backward-list
+C-M-r		isearch-backward-regexp
+C-M-s		isearch-forward-regexp
+C-M-t		transpose-sexps
+C-M-u		backward-up-list
+C-M-v		scroll-other-window
+C-M-w		append-next-kill
+C-M-\		indent-region
+M-SPC		just-one-space
+M-!		shell-command
+M-#		consult-register-load
+M-$		ispell-word
+M-%		query-replace
+M-&		async-shell-command
+M-'		consult-register-store
+M-(		insert-parentheses
+M-)		move-past-close-and-reindent
+M-,		xref-pop-marker-stack
+M--		negative-argument
+M-/		dabbrev-expand
+M-0		treemacs-select-window
+M-:		eval-expression
+M-;		evilnc-comment-or-uncomment-lines
+M-<		beginning-of-buffer
+M-=		count-words-region
+M->		end-of-buffer
+M-?		xref-find-references
+M-@		mark-word
+M-\		delete-horizontal-space
+M-^		delete-indentation
+M-`		tmm-menubar
+M-a		backward-sentence
+M-b		backward-word
+M-c		capitalize-word
+M-d		kill-word
+M-e		forward-sentence
+M-f		forward-word
+M-g		Prefix Command
+M-h		mark-paragraph
+M-i		tab-to-tab-stop
+M-j		default-indent-new-line
+M-k		kill-sentence
+M-l		downcase-word
+M-m		back-to-indentation
+M-o		facemenu-keymap
+M-p		projectile-command-map
+M-q		fill-paragraph
+M-r		move-to-window-line-top-bottom
+M-s		Prefix Command
+M-t		transpose-words
+M-u		upcase-word
+M-v		scroll-down-command
+M-w		kill-ring-save
+M-x		execute-extended-command
+M-y		consult-yank-pop
+M-z		zap-to-char
+M-{		backward-paragraph
+M-|		shell-command-on-region
+M-}		forward-paragraph
+M-~		not-modified
+M-DEL		backward-kill-word
+C-M-S-v		scroll-other-window-down
+C-M-SPC		mark-sexp
+C-M-#		consult-register
+C-M-%		query-replace-regexp
+C-M--		negative-argument
+C-M-.		xref-find-apropos
+C-M-/		dabbrev-completion
+
+M-s ESC		Prefix Command
+M-s .		isearch-forward-symbol-at-point
+M-s _		isearch-forward-symbol
+M-s d		symbol-overlay-jump-to-definition
+M-s e		symbol-overlay-echo-mark
+M-s h		Prefix Command
+M-s i		symbol-overlay-put
+M-s n		symbol-overlay-jump-next
+M-s o		occur
+M-s p		symbol-overlay-jump-prev
+M-s q		symbol-overlay-query-replace
+M-s r		symbol-overlay-rename
+M-s s		symbol-overlay-isearch-literally
+M-s t		symbol-overlay-toggle-in-scope
+M-s w		symbol-overlay-save-symbol
+
+M-p ESC		projectile-project-buffers-other-buffer
+M-p !		projectile-run-shell-command-in-root
+M-p &		projectile-run-async-shell-command-in-root
+M-p 4		Prefix Command
+M-p 5		Prefix Command
+M-p C		projectile-configure-project
+M-p D		projectile-dired
+M-p E		projectile-edit-dir-locals
+M-p F		projectile-find-file-in-known-projects
+M-p I		projectile-ibuffer
+M-p K		projectile-package-project
+M-p L		projectile-install-project
+M-p P		projectile-test-project
+M-p R		projectile-regenerate-tags
+M-p S		projectile-save-project-buffers
+M-p T		projectile-find-test-file
+M-p V		projectile-browse-dirty-projects
+M-p a		projectile-find-other-file
+M-p b		projectile-switch-to-buffer
+M-p c		projectile-compile-project
+M-p d		projectile-find-dir
+M-p e		projectile-recentf
+M-p f		projectile-find-file
+M-p g		projectile-find-file-dwim
+M-p h		treemacs-projectile
+M-p i		projectile-invalidate-cache
+M-p j		projectile-find-tag
+M-p k		projectile-kill-buffers
+M-p l		projectile-find-file-in-directory
+M-p m		projectile-commander
+M-p o		projectile-multi-occur
+M-p p		projectile-switch-project
+M-p q		projectile-switch-open-project
+M-p r		projectile-replace
+M-p s		Prefix Command
+M-p t		projectile-toggle-between-implementation-and-test
+M-p u		projectile-run-project
+M-p v		projectile-vc
+M-p x		Prefix Command
+M-p z		projectile-cache-current-file
+M-p <left>	projectile-previous-project-buffer
+M-p <right>	projectile-next-project-buffer
+
+M-g TAB		move-to-column
+M-g ESC		Prefix Command
+M-g I		consult-imenu-multi
+M-g c		goto-char
+M-g e		consult-compile-error
+M-g f		consult-flycheck
+M-g g		consult-goto-line
+M-g i		consult-imenu
+M-g k		consult-global-mark
+M-g m		consult-mark
+M-g n		next-error
+M-g o		consult-outline
+M-g p		previous-error
+
+<remap> <next>			good-scroll-up-full-screen
+<remap> <prior>			good-scroll-down-full-screen
+
+<help> C-a	about-emacs
+<help> C-c	describe-copying
+<help> C-d	view-emacs-debugging
+<help> C-e	view-external-packages
+<help> C-f	view-emacs-FAQ
+<help> C-h	help-for-help
+<help> RET	view-order-manuals
+<help> C-n	view-emacs-news
+<help> C-o	describe-distribution
+<help> C-p	view-emacs-problems
+<help> C-s	search-forward-help-for-help
+<help> C-t	view-emacs-todo
+<help> C-w	describe-no-warranty
+<help> C-\	describe-input-method
+<help> .	display-local-help
+<help> 4	Prefix Command
+<help> ?	help-for-help
+<help> B	embark-bindings
+<help> C	helpful-command
+<help> F	helpful-function
+<help> I	describe-input-method
+<help> K	Info-goto-emacs-key-command-node
+<help> L	describe-language-environment
+<help> P	describe-package
+<help> S	info-lookup-symbol
+<help> a	consult-apropos
+<help> b	describe-bindings
+<help> c	describe-key-briefly
+<help> d	apropos-documentation
+<help> e	view-echo-area-messages
+<help> f	helpful-callable
+<help> g	describe-gnu-project
+<help> h	view-hello-file
+<help> i	info
+<help> k	helpful-key
+<help> l	view-lossage
+<help> m	describe-mode
+<help> n	view-emacs-news
+<help> o	describe-symbol
+<help> p	finder-by-keyword
+<help> q	help-quit
+<help> r	info-emacs-manual
+<help> s	describe-syntax
+<help> t	help-with-tutorial
+<help> v	helpful-variable
+<help> w	where-is
+<help> <f1>	help-for-help
+<help> <help>	help-for-help
+
+C-c M-g		magit-file-dispatch
+
+C-c z c		wg-create-workgroup
+C-c z k		wg-kill-workgroup
+C-c z o		wg-open-workgroup
+
+C-h 4 i		info-other-window
+
+C-x M-g		magit-dispatch
+
+C-x 4 C-f	find-file-other-window
+C-x 4 C-o	display-buffer
+C-x 4 .		xref-find-definitions-other-window
+C-x 4 0		kill-buffer-and-window
+C-x 4 a		add-change-log-entry-other-window
+C-x 4 b		consult-buffer-other-window
+C-x 4 c		clone-indirect-buffer-other-window
+C-x 4 d		dired-other-window
+C-x 4 f		find-file-other-window
+C-x 4 m		compose-mail-other-window
+C-x 4 p		project-other-window-command
+C-x 4 r		find-file-read-only-other-window
+
+C-x 5 C-f	find-file-other-frame
+C-x 5 C-o	display-buffer-other-frame
+C-x 5 .		xref-find-definitions-other-frame
+C-x 5 0		delete-frame
+C-x 5 1		delete-other-frames
+C-x 5 2		make-frame-command
+C-x 5 b		switch-to-buffer-other-frame
+C-x 5 d		dired-other-frame
+C-x 5 f		find-file-other-frame
+C-x 5 m		compose-mail-other-frame
+C-x 5 o		other-frame
+C-x 5 p		project-other-frame-command
+C-x 5 r		find-file-read-only-other-frame
+
+C-x 8 RET	insert-char
+
+C-x a C-a	add-mode-abbrev
+C-x a '		expand-abbrev
+C-x a +		add-mode-abbrev
+C-x a -		inverse-add-global-abbrev
+C-x a e		expand-abbrev
+C-x a g		add-global-abbrev
+C-x a i		Prefix Command
+C-x a l		add-mode-abbrev
+C-x a n		expand-jump-to-next-slot
+C-x a p		expand-jump-to-previous-slot
+
+C-x n d		narrow-to-defun
+C-x n n		narrow-to-region
+C-x n p		narrow-to-page
+C-x n w		widen
+
+C-x p !		project-shell-command
+C-x p &		project-async-shell-command
+C-x p D		project-dired
+C-x p F		project-or-external-find-file
+C-x p G		project-or-external-find-regexp
+C-x p b		project-switch-to-buffer
+C-x p c		project-compile
+C-x p d		project-find-dir
+C-x p e		project-eshell
+C-x p f		project-find-file
+C-x p g		project-find-regexp
+C-x p k		project-kill-buffers
+C-x p p		project-switch-project
+C-x p r		project-query-replace-regexp
+C-x p s		project-shell
+C-x p v		project-vc-dir
+C-x p x		project-execute-extended-command
+
+C-x r C-@	point-to-register
+C-x r ESC	Prefix Command
+C-x r SPC	point-to-register
+C-x r +		increment-register
+C-x r M		bookmark-set-no-overwrite
+C-x r N		rectangle-number-lines
+C-x r b		consult-bookmark
+C-x r c		clear-rectangle
+C-x r d		delete-rectangle
+C-x r f		frameset-to-register
+C-x r g		insert-register
+C-x r i		insert-register
+C-x r j		jump-to-register
+C-x r k		kill-rectangle
+C-x r l		bookmark-bmenu-list
+C-x r m		bookmark-set
+C-x r n		number-to-register
+C-x r o		open-rectangle
+C-x r r		copy-rectangle-to-register
+C-x r s		copy-to-register
+C-x r t		string-rectangle
+C-x r w		window-configuration-to-register
+C-x r x		copy-to-register
+C-x r y		yank-rectangle
+C-x r C-SPC	point-to-register
+
+C-x t C-f	find-file-other-tab
+C-x t RET	tab-bar-select-tab-by-name
+C-x t C-t	treemacs-find-file
+C-x t ESC	Prefix Command
+C-x t 0		tab-close
+C-x t 1		treemacs-delete-other-windows
+C-x t 2		tab-new
+C-x t b		treemacs-bookmark
+C-x t d		dired-other-tab
+C-x t f		find-file-other-tab
+C-x t m		tab-move
+C-x t o		tab-next
+C-x t p		project-other-tab-command
+C-x t r		tab-rename
+C-x t t		treemacs
+
+M-s h .		highlight-symbol-at-point
+M-s h f		hi-lock-find-patterns
+M-s h l		highlight-lines-matching-regexp
+M-s h p		highlight-phrase
+M-s h r		highlight-regexp
+M-s h u		unhighlight-regexp
+M-s h w		hi-lock-write-interactive-patterns
+
+M-s M-w		eww-search-words
+
+M-p x e		projectile-run-eshell
+M-p x g		projectile-run-gdb
+M-p x i		projectile-run-ielm
+M-p x s		projectile-run-shell
+M-p x t		projectile-run-term
+M-p x v		projectile-run-vterm
+
+M-p s g		projectile-grep
+M-p s r		projectile-ripgrep
+M-p s s		projectile-ag
+
+M-p 5 D		projectile-dired-other-frame
+M-p 5 a		projectile-find-other-file-other-frame
+M-p 5 b		projectile-switch-to-buffer-other-frame
+M-p 5 d		projectile-find-dir-other-frame
+M-p 5 f		projectile-find-file-other-frame
+M-p 5 g		projectile-find-file-dwim-other-frame
+M-p 5 t		projectile-find-implementation-or-test-other-frame
+
+M-p 4 C-o	projectile-display-buffer
+M-p 4 D		projectile-dired-other-window
+M-p 4 a		projectile-find-other-file-other-window
+M-p 4 b		projectile-switch-to-buffer-other-window
+M-p 4 d		projectile-find-dir-other-window
+M-p 4 f		projectile-find-file-other-window
+M-p 4 g		projectile-find-file-dwim-other-window
+M-p 4 t		projectile-find-implementation-or-test-other-window
+
+M-o M-S		center-paragraph
+M-o M-o		font-lock-fontify-block
+M-o M-s		center-line
+
+M-g M-g		consult-goto-line
+M-g M-n		next-error
+M-g M-p		previous-error
+
+<f1> 4 i	info-other-window
+
+<help> 4 i	info-other-window
+
+C-x a i g	inverse-add-global-abbrev
+C-x a i l	inverse-add-mode-abbrev
+
+C-x r M-w	copy-rectangle-as-kill
+
+C-x t M-t	treemacs-find-tag
