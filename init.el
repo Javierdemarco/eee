@@ -301,6 +301,7 @@
   :config
   (which-key-mode))
 (use-package tree-sitter
+  :after lsp
   :hook (prog-mode . tree-sitter-mode)
   (prog-mode . tree-sitter-hl-mode))
 (use-package tree-sitter-langs
@@ -320,12 +321,21 @@
 ;;(use-package vterm)
 (use-package restart-emacs)
 (use-package company
+  :config
+  (setq company-idle-delay 0
+	company-minimum-prefix-length 1
+	company-selection-wrap-around t
+	)
   :hook (after-init-hook . global-company-mode))
 (use-package company-quickhelp
   :after company
   :hook (global-company-mode . company-quickhelp-mode))
 (use-package company-box
   :hook (company-mode . company-box-mode))
+(defun dotfiles--lsp-deferred-if-supported ()
+  "Run `lsp-deferred' if it's a supported mode."
+  (unless (derived-mode-p 'emacs-lisp-mode)
+    (lsp-deferred)))
 (use-package lsp-mode
   :config
   (setq lsp-keymap-prefix "C-c l"
@@ -335,7 +345,7 @@
 	lsp-log-io nil
 	lsp-completion-provider :capf
 	lsp-prefer-flymake nil)
-  :hook ((prog-mode . lsp)
+  :hook ((prog-mode . 'dotfiles--lsp-deferred-if-supported)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 (use-package lsp-ui 
@@ -343,12 +353,15 @@
   :commands lsp-ui-mode)
 (use-package lsp-treemacs
   :after lsp-mode
-  :commands lsp-treemacs-errors-list)
+  :config
+  (lsp-treemacs-sync-mode 1))
 (use-package yasnippet
+  :after company
   :hook (prog-mode . yas-global-mode))
 (use-package yasnippet-snippets
   :after yasnippet)
 (use-package dap-mode
+  :after lsp
   :hook
   (lsp-mode . dap-auto-configure-mode))
 ;; (use-package dap-python
@@ -472,6 +485,7 @@
   :interpreter
   ("scala" . scala-mode))
 (use-package lsp-metals
+  :after lsp
   :custom
   ;; Metals claims to support range formatting by default but it supports range
   ;; formatting of multiline strings only. You might want to disable it so that
@@ -486,7 +500,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(awesome-tray-active-modules
-   '("circe" "evil" "location" "file-path" "mode-name" "git" "buffer-read-only")))
+   '("circe" "evil" "location" "file-path" "mode-name" "git" "buffer-read-only"))
+ '(package-selected-packages
+   '(lsp-metals scala-mode ibuffer-projectile all-the-icons-ibuffer dap-mode yasnippet-snippets yasnippet lsp-treemacs lsp-ui lsp-mode company-box company-quickhelp company restart-emacs git-gutter consult-flycheck flycheck indent-guide format-all tree-sitter-langs tree-sitter which-key smartparens undo-fu evil-nerd-commenter hungry-delete multiple-cursors treemacs-all-the-icons treemacs-icons-dired treemacs-evil treemacs-magit treemacs-projectile treemacs evil-collection evil beacon highlight-thing rainbow-delimiters symbol-overlay consult-dir embark-consult consult embark marginalia orderless vertico amx workgroups2 iscroll good-scroll helpful dashboard projectile all-the-icons-completion all-the-icons page-break-lines auto-package-update kaolin-themes benchmark-init general use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
