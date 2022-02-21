@@ -96,6 +96,7 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 (use-package all-the-icons-completion
+  :after all-the-icons
   :config (all-the-icons-completion-mode))
 (use-package projectile
   :bind
@@ -216,6 +217,7 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 (use-package consult-dir
+  :after consult
   :bind (("C-x C-d" . consult-dir)))
 (use-package symbol-overlay)
 (use-package rainbow-delimiters
@@ -261,7 +263,7 @@
     (`(t . _)
      (treemacs-git-mode 'simple))))
 (use-package treemacs-projectile
-  :after projectile
+  :after projectile treemacs
   :bind (:map projectile-command-map
 	      ("h" . treemacs-projectile)))
 (use-package treemacs-magit
@@ -283,7 +285,8 @@
   :bind
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
-  ("C-c C-<" . mc/mark-all-like-this))
+  ("C-c C-<" . mc/mark-all-like-this)
+  ("C-S-c C-S-c" . mc/edit-lines))
 (use-package hungry-delete
   :hook (prog-mode . hungry-delete-mode))
 (use-package evil-nerd-commenter
@@ -367,6 +370,7 @@
 ;; (use-package dap-python
 ;;   :after dap-mode)
 (use-package all-the-icons-ibuffer
+  :after ibuffer
   :init
   (all-the-icons-ibuffer-mode 1))
 (use-package ibuffer-projectile
@@ -492,6 +496,21 @@
   ;; emacs can use indentation provided by scala-mode.
   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
   :hook (scala-mode . lsp))
+(general-define-key
+ :keymaps '(normal insert emacs)
+ :prefix "C-t"
+ :prefix-command 'eee-awesome-tab-prefix-command
+ :prefix-map 'eee-awesome-tab-prefix-map
+ "n" 'awesome-tab-forward-tab
+ "N" 'awesome-tab-forward
+ "b" 'awesome-tab-backward-tab
+ "B" 'awesome-tab-backward
+ "k" 'awesome-tab-kill-other-buffers-in-current-group
+ "K" 'awesome-tab-kill-all-buffers-in-current-group
+ "L" 'awesome-tab-move-current-tab-to-left
+ "H" 'awesome-tab-move-current-tab-to-right
+ "J" 'awesome-tab-move-current-tab-to-beg
+)
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables
@@ -500,9 +519,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(awesome-tray-active-modules
-   '("circe" "evil" "location" "file-path" "mode-name" "git" "buffer-read-only"))
- '(package-selected-packages
-   '(lsp-metals scala-mode ibuffer-projectile all-the-icons-ibuffer dap-mode yasnippet-snippets yasnippet lsp-treemacs lsp-ui lsp-mode company-box company-quickhelp company restart-emacs git-gutter consult-flycheck flycheck indent-guide format-all tree-sitter-langs tree-sitter which-key smartparens undo-fu evil-nerd-commenter hungry-delete multiple-cursors treemacs-all-the-icons treemacs-icons-dired treemacs-evil treemacs-magit treemacs-projectile treemacs evil-collection evil beacon highlight-thing rainbow-delimiters symbol-overlay consult-dir embark-consult consult embark marginalia orderless vertico amx workgroups2 iscroll good-scroll helpful dashboard projectile all-the-icons-completion all-the-icons page-break-lines auto-package-update kaolin-themes benchmark-init general use-package)))
+   '("circe" "evil" "location" "file-path" "mode-name" "git" "buffer-read-only")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
