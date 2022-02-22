@@ -344,13 +344,37 @@
 	lsp-idle-delay 0.500
 	lsp-log-io nil
 	lsp-completion-provider :capf
-	lsp-prefer-flymake nil)
+	lsp-prefer-flymake nil
+	;;lsp-auto-guess-root t
+	lsp-restart 'auto-restart
+	lsp-enable-symbol-highlighting t
+	lsp-enable-on-type-formatting t
+	lsp-signature-auto-activate t
+	lsp-signature-render-documentation t
+	lsp-eldoc-hook t
+	lsp-headerline-breadcrumb-enable t
+	lsp-semantic-tokens-enable t
+	lsp-enable-folding t
+	lsp-enable-imenu t
+	lsp-enable-snippet t
+	)
   :hook ((prog-mode . 'dotfiles--lsp-deferred-if-supported)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
 (use-package lsp-ui 
   :after lsp-mode
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :config
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-header t)
+  (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-border (face-foreground 'default))
+  (setq lsp-ui-sideline-show-code-actions t)
+  (setq lsp-ui-sideline-delay 0.05))
+(use-package lsp-pyright
+  :hook (python-mode . (lambda () (require 'lsp-pyright)))
+  :init (when (executable-find "python3")
+          (setq lsp-pyright-python-executable-cmd "python3")))
 (use-package lsp-treemacs
   :after lsp-mode
   :config
@@ -492,6 +516,17 @@
   ;; emacs can use indentation provided by scala-mode.
   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
   :hook (scala-mode . lsp))
+(use-package lsp-java :hook (java-mode . lsp))
+(general-define-key
+ :keymaps '(normal insert emacs)
+ :prefix "C-c w"
+ :prefix-command 'eee-resize-prefix-command
+ :prefix-map 'eee-resize-prefix-map
+ "j" 'shrink-window
+ "k" 'enlarge-window
+ "l" 'enlarge-window-horizontally
+ "h" 'shrink-window-horizontally)
+
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables
