@@ -1,6 +1,4 @@
-;;; init.el --- Summary
-
-;;; Commentary:
+;; init.el --- Summary;;; Commentary:
 
 ;;; Code:
 
@@ -17,6 +15,8 @@
       undo-limit 80000000
       auto-save-default t
       scroll-margin 2
+      fill-column 80
+      visual-fill-column-width 80
       display-line-numbers-type 'relative
       delete-old-versions t
       kept-new-versions 6
@@ -33,7 +33,8 @@
       scroll-margin 0
       scroll-conservatively 100000
       auto-window-vscroll nil
-      user-banners-dir (concat user-emacs-directory (convert-standard-filename "banners/"))
+      user-banners-dir (concat user-emacs-directory
+			       (convert-standard-filename "banners/"))
       scroll-preserve-screen-position t)
 (when (display-graphic-p)
   (setq mouse-wheel-scroll-amount '(1 ((shift) . hscroll))
@@ -48,7 +49,7 @@
 (column-number-mode)
 (global-display-line-numbers-mode)
 (add-to-list 'default-frame-alist
-             '(font . "Monoid NF-10"))
+             '(font . "Monoid NF-12.5"))
 (defmacro with-system (type &rest body)
   "Evaluate BODY if `system-type' equals TYPE."
   (declare (indent defun))
@@ -59,7 +60,7 @@
   (interactive)
   (find-file user-init-file))
 (defun install-banners ()
-  "Copy all files under under banners directory to dashboard banners directory"
+  "Copy all files under under banners directory todashboard banners directory"
   (when (boundp 'dashboard-banners-directory)
     (copy-directory user-banners-dir dashboard-banners-directory nil nil t)))
 (require 'package)
@@ -163,14 +164,17 @@
   :hook (add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup))
 (use-package embark
   :bind
-  (("C-." . embark-act) 
-   ("M-." . embark-dwim)        
-   ("C-h B" . embark-bindings)) 
+  (("C-." . embark-act)
+   ("M-." . embark-dwim)
+   ("C-h B" . embark-bindings))
   :config
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                  nil
                  (window-parameters (mode-line-format . none)))))
+(use-package visual-fill-column
+  :hook (visual-line-mode . visual-fill-column-mode)
+  (prog-mode . visual-line-mode))
 (use-package consult
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
@@ -244,7 +248,7 @@
   (cfrs-border-color ((t (:background ,(face-foreground 'font-lock-comment-face nil t)))))
   :bind (([f8]        . treemacs)
          ("M-0"       . treemacs-select-window)
-         ("C-x 1"     . treemacs-delete-other-windows) 
+         ("C-x 1"     . treemacs-delete-other-windows)
          :map treemacs-mode-map
          ([mouse-1]   . treemacs-single-click-expand-action))
   :config
@@ -364,7 +368,7 @@
   :hook ((prog-mode . 'dotfiles--lsp-deferred-if-supported)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
-(use-package lsp-ui 
+(use-package lsp-ui
   :after lsp-mode
   :commands lsp-ui-mode
   :config
@@ -443,40 +447,57 @@
 	awesome-tray-file-path-truncate-dirname-levels 3
 	awesome-tray-file-path-truncated-name-length 3)
   (awesome-tray-mode t))
+(use-package scala-mode
+  :interpreter
+  ("scala" . scala-mode))
+(use-package evil-leader
+  :after evil
+  :config
+  (evil-leader/set-leader ",")
+  (evil-leader/set-key
+    "e" 'find-file
+    "b" 'switch-to-buffer
+    "k" 'kill-buffer)
+  (global-evil-leader-mode))
+(use-package lsp-metals
+  :after lsp
+  :custom
+  ;; Metals claims to support range formatting by default but it supports range
+  ;; formatting of multiline strings only. You might want to disable it so that
+  ;; emacs can use indentation provided by scala-mode.
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
+  :hook (scala-mode . lsp))
+(use-package lsp-java :hook (java-mode . lsp))
+(use-package fill-column-indicator
+  :hook (prog-mode . fci-mode)
+  :config
+  (setq fci-rule-width 1))
 (general-define-key
  :keymaps '(normal insert emacs)
- :prefix "C-q"
- :prefix-command 'eee-consult-search-prefix-command
- :prefix-map 'eee-consult-search-prefix-map
- "s" 'consult-line
- "d" 'consult-find
- "D" 'consult-locate
- "g" 'consult-grep
- "G" 'consult-git-grep
- "r" 'consult-ripgrep
- "l" 'consult-line
- "L" 'consult-line-multi
- "m" 'consult-multi-occur
- "k" 'consult-keep-lines
- "u" 'consult-focus-lines)
+ :prefix (concat evil-leader/leader " w")
+ :prefix-command 'eee-resize-prefix-command
+ :prefix-map 'eee-resize-prefix-map
+ "j" 'shrink-window
+ "k" 'enlarge-window
+ "l" 'enlarge-window-horizontally
+ "h" 'shrink-window-horizontally)
 (general-define-key
  :keymaps '(normal insert emacs)
- :prefix "M-s"
- :prefix-command 'eee-symbol-overlay-prefix-command
- :prefix-map 'eee-symbol-overlay-prefix-map
- "i" 'symbol-overlay-put
- "n" 'symbol-overlay-jump-next
- "p" 'symbol-overlay-jump-prev
- "w" 'symbol-overlay-save-symbol
- "t" 'symbol-overlay-toggle-in-scope
- "e" 'symbol-overlay-echo-mark
- "d" 'symbol-overlay-jump-to-definition
- "s" 'symbol-overlay-isearch-literally
- "q" 'symbol-overlay-query-replace
- "r" 'symbol-overlay-rename)
+ :prefix (concat evil-leader/leader  " t")
+ :prefix-command 'eee-awesome-tab-prefix-command
+ :prefix-map 'eee-awesome-tab-prefix-map
+ "n" 'awesome-tab-forward-tab
+ "N" 'awesome-tab-forward
+ "b" 'awesome-tab-backward-tab
+ "B" 'awesome-tab-backward
+ "k" 'awesome-tab-kill-other-buffers-in-current-group
+ "K" 'awesome-tab-kill-all-buffers-in-current-group
+ "L" 'awesome-tab-move-current-tab-to-left
+ "H" 'awesome-tab-move-current-tab-to-right
+ "J" 'awesome-tab-move-current-tab-to-beg)
 (general-define-key
  :keymaps '(normal insert emacs)
- :prefix "C-x t"
+ :prefix (concat evil-leader/leader " t")
  :prefix-command 'eee-treemacs-prefix-command
  :prefix-map 'eee-treemacs-prefix-map
  "1"  'treemacs-delete-other-windows
@@ -509,42 +530,37 @@
  "C-d" 'helpful-at-point
  "F" 'helpful-function
  "C" 'helpful-command)
-(use-package scala-mode
-  :interpreter
-  ("scala" . scala-mode))
-(use-package lsp-metals
-  :after lsp
-  :custom
-  ;; Metals claims to support range formatting by default but it supports range
-  ;; formatting of multiline strings only. You might want to disable it so that
-  ;; emacs can use indentation provided by scala-mode.
-  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
-  :hook (scala-mode . lsp))
-(use-package lsp-java :hook (java-mode . lsp))
 (general-define-key
  :keymaps '(normal insert emacs)
- :prefix "C-c w"
- :prefix-command 'eee-resize-prefix-command
- :prefix-map 'eee-resize-prefix-map
- "j" 'shrink-window
- "k" 'enlarge-window
- "l" 'enlarge-window-horizontally
- "h" 'shrink-window-horizontally)
+ :prefix (concat evil-leader/leader " q")
+ :prefix-command 'eee-consult-search-prefix-command
+ :prefix-map 'eee-consult-search-prefix-map
+ "s" 'consult-line
+ "d" 'consult-find
+ "D" 'consult-locate
+ "g" 'consult-grep
+ "G" 'consult-git-grep
+ "r" 'consult-ripgrep
+ "l" 'consult-line
+ "L" 'consult-line-multi
+ "m" 'consult-multi-occur
+ "k" 'consult-keep-lines
+ "u" 'consult-focus-lines)
 (general-define-key
  :keymaps '(normal insert emacs)
- :prefix "C-t"
- :prefix-command 'eee-awesome-tab-prefix-command
- :prefix-map 'eee-awesome-tab-prefix-map
- "n" 'awesome-tab-forward-tab
- "N" 'awesome-tab-forward
- "b" 'awesome-tab-backward-tab
- "B" 'awesome-tab-backward
- "k" 'awesome-tab-kill-other-buffers-in-current-group
- "K" 'awesome-tab-kill-all-buffers-in-current-group
- "L" 'awesome-tab-move-current-tab-to-left
- "H" 'awesome-tab-move-current-tab-to-right
- "J" 'awesome-tab-move-current-tab-to-beg
-)
+ :prefix "M-s"
+ :prefix-command 'eee-symbol-overlay-prefix-command
+ :prefix-map 'eee-symbol-overlay-prefix-map
+ "i" 'symbol-overlay-put
+ "n" 'symbol-overlay-jump-next
+ "p" 'symbol-overlay-jump-prev
+ "w" 'symbol-overlay-save-symbol
+ "t" 'symbol-overlay-toggle-in-scope
+ "e" 'symbol-overlay-echo-mark
+ "d" 'symbol-overlay-jump-to-definition
+ "s" 'symbol-overlay-isearch-literally
+ "q" 'symbol-overlay-query-replace
+ "r" 'symbol-overlay-rename)
 (provide 'init)
 ;;; init.el ends here
 (custom-set-variables
@@ -553,7 +569,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(awesome-tray-active-modules
-   '("circe" "evil" "location" "file-path" "mode-name" "git" "buffer-read-only")))
+   '("circe" "evil" "location" "file-path" "mode-name" "git" "buffer-read-only"))
+ '(package-selected-packages
+   '(lsp-java lsp-metals scala-mode ibuffer-projectile all-the-icons-ibuffer dap-mode yasnippet-snippets yasnippet lsp-treemacs lsp-pyright lsp-ui lsp-mode company-box company-quickhelp company restart-emacs git-gutter consult-flycheck flycheck indent-guide format-all tree-sitter-langs tree-sitter which-key smartparens undo-fu evil-nerd-commenter hungry-delete multiple-cursors treemacs-all-the-icons treemacs-icons-dired treemacs-evil treemacs-magit treemacs-projectile treemacs evil-collection evil beacon highlight-thing rainbow-delimiters symbol-overlay consult-dir embark-consult consult embark marginalia orderless vertico amx workgroups2 iscroll good-scroll helpful dashboard projectile all-the-icons-completion all-the-icons page-break-lines auto-package-update kaolin-themes benchmark-init general use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
