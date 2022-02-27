@@ -472,6 +472,10 @@
   :hook (prog-mode . fci-mode)
   :config
   (setq fci-rule-width 1))
+(use-package jupyter)
+(use-package ein)
+(use-package mini-frame
+  :hook (after-init . mini-frame-mode))
 (general-define-key
  :keymaps '(normal insert emacs)
  :prefix (concat evil-leader/leader " w")
@@ -570,6 +574,10 @@
  ;; If there is more than one, they won't work right.
  '(awesome-tray-active-modules
    '("circe" "evil" "location" "file-path" "mode-name" "git" "buffer-read-only"))
+ '(mini-frame-show-parameters
+   '((top . 30)
+     (width . 0.7)
+     (left . 0.5)))
  '(package-selected-packages
    '(lsp-java lsp-metals scala-mode ibuffer-projectile all-the-icons-ibuffer dap-mode yasnippet-snippets yasnippet lsp-treemacs lsp-pyright lsp-ui lsp-mode company-box company-quickhelp company restart-emacs git-gutter consult-flycheck flycheck indent-guide format-all tree-sitter-langs tree-sitter which-key smartparens undo-fu evil-nerd-commenter hungry-delete multiple-cursors treemacs-all-the-icons treemacs-icons-dired treemacs-evil treemacs-magit treemacs-projectile treemacs evil-collection evil beacon highlight-thing rainbow-delimiters symbol-overlay consult-dir embark-consult consult embark marginalia orderless vertico amx workgroups2 iscroll good-scroll helpful dashboard projectile all-the-icons-completion all-the-icons page-break-lines auto-package-update kaolin-themes benchmark-init general use-package)))
 (custom-set-faces
