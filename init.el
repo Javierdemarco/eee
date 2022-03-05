@@ -186,12 +186,8 @@
          ("M-#" . consult-register-load)
          ("M-'" . consult-register-store)
          ("C-M-#" . consult-register)
-         ;; Other custom bindings
          ("M-y" . consult-yank-pop)
          ("<help> a" . consult-apropos))
-  ;; Enable automatic preview at point in the *Completions* buffer. This is
-  ;; relevant when you use the default completion UI. You may want to also
-  ;; enable `consult-preview-at-point-mode` in Embark Collect buffers.
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
   (setq register-preview-delay 0
@@ -199,13 +195,6 @@
   (advice-add #'register-preview :override #'consult-register-window)
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
-  ;; Optionally configure preview. The default value
-  ;; is 'any, such that any key triggers the preview.
-  ;; (setq consult-preview-key 'any)
-  ;; (setq consult-preview-key (kbd "M-."))
-  ;; (setq consult-preview-key (list (kbd "<S-down>") (kbd "<S-up>")))
-  ;; For some commands and buffer sources it is useful to configure the
-  ;; :preview-key on a per-command basis using the `consult-customize' macro.
   (consult-customize
    consult-theme
    :preview-key '(:debounce 0.2 any)
@@ -486,7 +475,7 @@
  "l" 'enlarge-window-horizontally
  "h" 'shrink-window-horizontally)
 (general-define-key
- :keymaps '(normal insert emacs)
+ :keymaps '(normal emacs)
  :prefix (concat evil-leader/leader  " t")
  :prefix-command 'eee-awesome-tab-prefix-command
  :prefix-map 'eee-awesome-tab-prefix-map
@@ -500,7 +489,7 @@
  "H" 'awesome-tab-move-current-tab-to-right
  "J" 'awesome-tab-move-current-tab-to-beg)
 (general-define-key
- :keymaps '(normal insert emacs)
+ :keymaps '(normal emacs)
  :prefix (concat evil-leader/leader " t")
  :prefix-command 'eee-treemacs-prefix-command
  :prefix-map 'eee-treemacs-prefix-map
@@ -510,7 +499,7 @@
  "C-t" 'treemacs-find-file
  "M-t" 'treemacs-find-tag)
 (general-define-key
- :keymaps '(normal insert emacs)
+ :keymaps '(normal emacs)
  :prefix "M-g"
  :prefix-command 'eee-consult-goto-prefix-command
  :prefix-map 'eee-consult-goto-prefix-map
@@ -524,7 +513,7 @@
  "i" 'consult-imenu
  "I" 'consult-imenu-multi)
 (general-define-key
- :keymaps '(normal insert emacs)
+ :keymaps '(normal emacs)
  :prefix "<help>"
  :prefix-command 'eee-help-prefix-command
  :prefix-map 'eee-help-prefix-map
@@ -535,7 +524,7 @@
  "F" 'helpful-function
  "C" 'helpful-command)
 (general-define-key
- :keymaps '(normal insert emacs)
+ :keymaps '(normal emacs)
  :prefix (concat evil-leader/leader " q")
  :prefix-command 'eee-consult-search-prefix-command
  :prefix-map 'eee-consult-search-prefix-map
@@ -551,7 +540,7 @@
  "k" 'consult-keep-lines
  "u" 'consult-focus-lines)
 (general-define-key
- :keymaps '(normal insert emacs)
+ :keymaps '(normal emacs)
  :prefix "M-s"
  :prefix-command 'eee-symbol-overlay-prefix-command
  :prefix-map 'eee-symbol-overlay-prefix-map
@@ -577,9 +566,7 @@
  '(mini-frame-show-parameters
    '((top . 30)
      (width . 0.7)
-     (left . 0.5)))
- '(package-selected-packages
-   '(lsp-java lsp-metals scala-mode ibuffer-projectile all-the-icons-ibuffer dap-mode yasnippet-snippets yasnippet lsp-treemacs lsp-pyright lsp-ui lsp-mode company-box company-quickhelp company restart-emacs git-gutter consult-flycheck flycheck indent-guide format-all tree-sitter-langs tree-sitter which-key smartparens undo-fu evil-nerd-commenter hungry-delete multiple-cursors treemacs-all-the-icons treemacs-icons-dired treemacs-evil treemacs-magit treemacs-projectile treemacs evil-collection evil beacon highlight-thing rainbow-delimiters symbol-overlay consult-dir embark-consult consult embark marginalia orderless vertico amx workgroups2 iscroll good-scroll helpful dashboard projectile all-the-icons-completion all-the-icons page-break-lines auto-package-update kaolin-themes benchmark-init general use-package)))
+     (left . 0.5))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
